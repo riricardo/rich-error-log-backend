@@ -1,6 +1,10 @@
 const express = require("express");
 const cors = require("cors");
 
+const errorRoute = require("./routes/errorRoute");
+const keyListRoute = require("./routes/keyListRoute");
+const userRoute = require("./routes/userRoute");
+
 const app = express();
 const PORT = 5000;
 
@@ -9,21 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("API is running ✅");
-});
+app.get("/api", (req, res) => res.send("API is running ✅"));
+app.use("/api/error", errorRoute);
+app.use("/api/keyList", keyListRoute);
+app.use("/api/user", userRoute);
 
-app.get("/users", (req, res) => {
-  res.json([
-    { id: 1, name: "Ricardo" },
-    { id: 2, name: "Maria" },
-  ]);
-});
-
-app.post("/users", (req, res) => {
-  const newUser = req.body;
-  res.status(201).json({ message: "User created", user: newUser });
-});
-
-// Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
