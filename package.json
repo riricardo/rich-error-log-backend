@@ -1,0 +1,29 @@
+{
+  "name": "rich-error-log-backend",
+  "version": "1.0.0",
+  "description": "Api that serves as a backend for the rich error project.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riricardo/rich-error-log-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/riricardo/rich-error-log-backend/issues"
+  },
+  "homepage": "https://github.com/riricardo/rich-error-log-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
