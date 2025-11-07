@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 const User = require("../models/UserModel");
 
 const login = async (req, res, next) => {
@@ -14,7 +15,12 @@ const login = async (req, res, next) => {
   }
 
   const { password, ..._user } = user.toObject({ getters: true });
-  res.json(_user);
+
+  const token = jwt.sign({ user: _user }, process.env.JWT_SECRET, {
+    expiresIn: "7d",
+  });
+
+  res.json({ token });
 };
 
 exports.login = login;

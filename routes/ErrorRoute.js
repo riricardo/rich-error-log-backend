@@ -1,10 +1,11 @@
 const express = require("express");
 const controller = require("../controllers/ErrorController");
+const authenticateToken = require("../middleware/AuthenticationMiddleware");
 
 const router = express.Router();
 
-router.get("/", controller.getErrors);
+router.get("/", authenticateToken, controller.getErrors);
 
-router.post("/", controller.createError);
+router.post("/", authenticateToken, controller.createError);
 
 module.exports = router;
