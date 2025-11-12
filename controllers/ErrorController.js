@@ -8,7 +8,10 @@ const getErrors = async (req, res, next) => {
   const skip = (page - 1) * limit;
 
   const query = tenantId ? { tenantId: tenantId } : {};
-  let results = await Error.find(query).sort({ _id: -1 }).skip(skip);
+  let results = await Error.find(query)
+    .sort({ _id: -1 })
+    .skip(skip)
+    .limit(limit);
 
   const total = await Error.countDocuments(query); // total documents
   const totalPages = Math.ceil(total / limit);
@@ -18,7 +21,7 @@ const getErrors = async (req, res, next) => {
     limit,
     total,
     totalPages,
-    data: results,
+    data: results.map((result) => result.toObject({ getters: true })),
   });
 };
 

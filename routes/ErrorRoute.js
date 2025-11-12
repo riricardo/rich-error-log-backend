@@ -6,6 +6,6 @@ const router = express.Router();
 
 router.get("/", authenticateToken, controller.getErrors);
 
-router.post("/", authenticateToken, controller.createError);
+router.post("/", controller.createError);
 
 module.exports = router;
